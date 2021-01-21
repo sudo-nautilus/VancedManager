@@ -10,8 +10,8 @@ android {
         applicationId = "com.vanced.faq"
         minSdkVersion(21)
         targetSdkVersion(30)
-        versionCode = 10
-        versionName = "1.0"
+        versionCode = 110
+        versionName = "1.1"
 
         vectorDrawables.useSupportLibrary = true
     }
@@ -33,11 +33,6 @@ android {
 
     buildFeatures {
         viewBinding = true
-    }
-
-    packagingOptions {
-        exclude("META-INF/DEPENDENCIES")
-        exclude("META-INF/*.kotlin_module")
     }
 
 // To inline the bytecode built with JVM target 1.8 into
