@@ -58,6 +58,8 @@ android {
 
 dependencies {
 
+    val markdownVersion = "4.6.1"
+
 // Kotlin
     implementation(kotlin("stdlib-jdk8"))
 
@@ -69,7 +71,9 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-livedata-core-ktx:2.2.0")
 
     //Appearance
-    implementation("com.google.android.material:material:1.3.0-beta01")
+    implementation("com.google.android.material:material:1.3.0-rc01")
+    implementation("io.noties.markwon:core:$markdownVersion")
+    implementation("io.noties.markwon:linkify:$markdownVersion")
 
     // JSON parser
     implementation("com.beust:klaxon:5.4")

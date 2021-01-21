@@ -3,6 +3,7 @@ package com.vanced.faq.ui.fragments
 import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
+import android.text.method.LinkMovementMethod
 import android.text.util.Linkify
 import android.view.LayoutInflater
 import android.view.View
@@ -13,10 +14,13 @@ import com.beust.klaxon.JsonObject
 import com.vanced.faq.databinding.FragmentPageBinding
 import com.vanced.faq.ui.core.currentItems
 import com.vanced.faq.ui.core.currentListItem
+import io.noties.markwon.Markwon
+import io.noties.markwon.linkify.LinkifyPlugin
 
 class VancedPageFragment : Fragment() {
 
     private lateinit var binding: FragmentPageBinding
+    private val markwon by lazy { Markwon.builder(requireActivity()).usePlugin(LinkifyPlugin.create(Linkify.WEB_URLS)).build() }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -45,7 +49,7 @@ class VancedPageFragment : Fragment() {
                 with (binding.pageLinear) {
                     removeAllViews()
                     addView(
-                        TextView(context).apply {
+                        TextView(requireActivity()).apply {
                             setPadding(0, 8, 0, 0)
                             text = item.string("title")
                             setTextColor(Color.WHITE)
@@ -53,16 +57,17 @@ class VancedPageFragment : Fragment() {
                         }
                     )
                     addView(
-                        TextView(context).apply {
+                        TextView(requireActivity()).apply {
+                            val description = item.string("description")
                             setPadding(0, 4, 0, 0)
                             setTextColor(Color.WHITE)
-                            autoLinkMask = Linkify.WEB_URLS
-                            text = item.string("description")
+                            movementMethod = LinkMovementMethod.getInstance()
+                            text = description?.let { markwon.toMarkdown(it) }
                         }
                     )
                     fields?.forEach {
                         addView(
-                            TextView(context).apply {
+                            TextView(requireActivity()).apply {
                                 setTextColor(Color.WHITE)
                                 setPadding(0, 8, 0, 8)
                                 text = it.string("title")
@@ -71,11 +76,12 @@ class VancedPageFragment : Fragment() {
                             }
                         )
                         addView(
-                            TextView(context).apply {
+                            TextView(requireActivity()).apply {
+                                val content = it.string("content")
                                 setPadding(0, 8, 0, 8)
                                 setTextColor(Color.WHITE)
-                                autoLinkMask = Linkify.WEB_URLS
-                                text = it.string("content")
+                                movementMethod = LinkMovementMethod.getInstance()
+                                text = content?.let { it1 -> markwon.toMarkdown(it1) }
                             }
                         )
                     }
@@ -83,5 +89,4 @@ class VancedPageFragment : Fragment() {
             }
         }
     }
-
 }
