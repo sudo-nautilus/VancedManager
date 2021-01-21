@@ -1,2 +1,2 @@
 # Vanced FAQ
-because why not
+Because why not
