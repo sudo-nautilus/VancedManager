@@ -1,3 +1,3 @@
-rootProject.name = "Vanced FAQ"
+rootProject.name = "Vanced Guide"
 
 include(":app")

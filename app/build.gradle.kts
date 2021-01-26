@@ -10,8 +10,8 @@ android {
         applicationId = "com.vanced.faq"
         minSdkVersion(21)
         targetSdkVersion(30)
-        versionCode = 110
-        versionName = "1.1"
+        versionCode = 111
+        versionName = "1.1.1"
 
         vectorDrawables.useSupportLibrary = true
     }
