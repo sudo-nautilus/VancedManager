@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name" translatable="false">Vanced FAQ</string>
+    <string name="app_name" translatable="false">Vanced Guide</string>
 
     <string name="website_url"><a href="https://vancedapp.com">Website</a></string>
     <string name="github_url"><a href="https://github.com/YTVanced">GitHub</a></string>
